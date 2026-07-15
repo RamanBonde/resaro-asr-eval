@@ -1,0 +1,10 @@
+openai-whisper
+transformers
+torch
+datasets
+soundfile
+jiwer
+pandas
+numpy
+matplotlib
+huggingface_hub
