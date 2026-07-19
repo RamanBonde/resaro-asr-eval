@@ -2,8 +2,7 @@
 
 Compares two speech-recognition models (whisper-base, wav2vec2-base-960h) on
 English speech across 3 accent groups × 3 noise conditions, reporting WER/CER
-per cell — and drives the evaluation through Resaro's AIP v2 platform, whose
-gaps for an unsupported (speech) modality are documented in the report.
+per cell — and drives the evaluation through Resaro's AIP v2 platform.
 
 ## Setup
 
