@@ -10,11 +10,6 @@ What this script does, in plain words:
 
 Output: data/audio/*.wav + data/manifest.csv with columns:
     clip_id, path, reference_text, accent_group, noise_condition
-
-NOTE: We use the community mirror "fsicoli/common_voice_17_0" because
-Mozilla removed Common Voice from Hugging Face in October 2025 (it moved
-to the Mozilla Data Collective). Requires datasets==3.6.0, because newer
-versions of the datasets library no longer run script-based datasets.
 """
 
 import os
@@ -29,7 +24,7 @@ from config import (SEED, SAMPLE_RATE, ACCENT_GROUPS, CLIPS_PER_GROUP,
 
 PRINT_ACCENTS = False   # set True on first run to see the real accent labels
 
-# --- Data quality rules (report these as your dataset QC criteria) ------
+# --- Data quality rules  ------
 MIN_DURATION_S = 2.0    # too-short clips make WER unstable
 MAX_DURATION_S = 12.0   # keeps runtime bounded
 MIN_WORDS = 3           # reference text must have enough words to grade

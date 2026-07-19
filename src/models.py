@@ -1,4 +1,4 @@
-"""Step 2: Model wrappers.
+""" Model wrappers.
 The idea: we have two different speech-to-text models, and each one has
 its own way of being loaded and used. To keep the rest of the project
 simple, we wrap each model in a small class that works the same way:

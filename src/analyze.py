@@ -1,4 +1,4 @@
-"""Step 4: Grade and slice.
+""" Grade and slice.
 
 What this script does:
   1. Loads the predictions from step 3.
@@ -6,15 +6,14 @@ What this script does:
   3. Averages them per (model x accent_group x noise_condition) "cell"
      and saves that table — this is the core deliverable.
   4. Draws one heatmap image per model.
-  5. Saves the 10 worst predictions so you can study them by hand.
+  5. Saves the 10 worst predictions.
 
 About text normalization (IMPORTANT for the report):
   wav2vec2 outputs UPPERCASE TEXT WITHOUT PUNCTUATION, while Whisper
   outputs normal cased, punctuated text. If we compared them raw, WER
   would punish formatting differences, not actual recognition mistakes.
   So we lowercase everything, strip punctuation, etc. — and we apply the
-  SAME normalization to both the reference and the model output. State
-  this in the report: it is a real evaluation-design decision.
+  SAME normalization to both the reference and the model output.
 """
 
 import jiwer
@@ -65,8 +64,9 @@ def cer_of(ref, hyp):
     """
     if not hyp:
         return 1.0
-    # CER is less sensitive to formatting, so lowercasing is enough here.
-    return jiwer.cer(ref.lower(), hyp.lower())
+    import re
+    clean = lambda t: re.sub(r"\s+", " ", re.sub(r"[^\w\s]", " ", t.lower())).strip()
+    return jiwer.cer(clean(ref), clean(hyp))
 
 
 def main():

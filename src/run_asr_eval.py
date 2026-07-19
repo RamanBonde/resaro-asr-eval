@@ -1,39 +1,24 @@
 """
-run_asr_eval.py  —  Evaluate & compare two ASR models on the AIP v2 platform.
+run_asr_eval.py — Evaluate & compare two ASR models via the AIP v2 platform.
 
-ASR evaluation is, underneath, a *text* problem — compare a
-predicted transcript to a reference transcript. So:
+ASR evaluation is, underneath, a text comparison (predicted vs reference
+transcript), so clips are mapped onto the platform's text schema
+(gdi_text_v1) and scored in external mode:
 
-  1. Run the two ASR models LOCALLY to get transcripts.
-  2. Map the clips onto the platform's TEXT schema (gdi_text_v1):
-        clip_id         -> input_id
-        path            -> prompt            (placeholder; audio has no home)
-        reference_text  -> expected_output
-        accent_group    -> dimension (for stratified analysis)
-        noise_condition -> dimension
-  3. Score in EXTERNAL / score-only mode: produce `sut_response`
-     ourselves and the platform scores it. This sidesteps the missing ASR
-     connector entirely.
-  4. Use the platform's built-in TEXT metrics as transcription-quality
-     proxies (bleu / rouge / exact_match / correctness), AND compute the
-     field-standard WER / CER LOCALLY with jiwer — because the platform has
-     no WER/CER scorer today.
+    clip_id         -> input_id
+    path            -> prompt          (placeholder; no audio field exists)
+    reference_text  -> expected_output
+    model transcript-> sut_response    (produced locally, attached per run)
 
-INPUTS TO PROVIDE
-------------------
-  - data/manifest.csv                     
-  - predictions/<model>.csv per model, columns: clip_id,hypothesis
-        e.g. predictions/whisper-base.csv
-             predictions/wav2vec2.csv
+WER/CER are computed locally with jiwer — the platform has no ASR scorer,
+and requesting text metrics at run creation fails validation in external
+mode (see report, Gap 3). Runs are therefore created without explicit
+metrics; they carry the data, dimensions, and audit trail.
 
-RUN ORDER
----------
-  python run_asr_eval.py prep        # upload + quality-check + promote golden
-  python run_asr_eval.py score       # score BOTH models (two external runs)
-  python run_asr_eval.py compare     # diff the two runs + stratified summary
-
-Or `python run_asr_eval.py all` to do everything in sequence.
-
+Run order:
+    python run_asr_eval.py prep      # upload -> quality checks -> golden
+    python run_asr_eval.py score     # two external runs + local WER/CER
+    python run_asr_eval.py compare   # cross-model stratified summary
 """
 
 import os
