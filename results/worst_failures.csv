@@ -1,0 +1,11 @@
+clip_id,model,accent_group,noise_condition,wer,reference_text,hypothesis_text
+us_002_snr0,wav2vec2-base-960h,us,snr0,1.6666666666666667,A deputy representative,TE DEDIDI BE TEDEE DE
+india_004_snr10,wav2vec2-base-960h,india,snr10,1.6,Valgrind detected multiple memory leaks.,WO HAVE BEEN DILITID WIN TO BE NO
+german_009_snr0,whisper-base,german,snr0,1.3076923076923077,"Eagleson was born in Los Angeles, California, and educated in the public schools.",Igor told me he was gone was angry less purposely and cono-headed. So it must have been the perfect years.
+german_002_clean,wav2vec2-base-960h,german,clean,1.2,The bid was eventually dropped.,TO SLIT MORE EVENTUALLY O ON HE
+india_004_snr10,whisper-base,india,snr10,1.2,Valgrind detected multiple memory leaks.,The Vulcan 10 get multiple novelists.
+india_005_snr0,whisper-base,india,snr0,1.125,She lost her sight in a childhood accident.,He lost his fight and he jailed us for that.
+india_004_clean,wav2vec2-base-960h,india,clean,1.0,Valgrind detected multiple memory leaks.,WALVIN DELICTED MARTAPUNORILIS
+india_001_snr0,wav2vec2-base-960h,india,snr0,1.0,A scientist in a lab coat is using a microscope.,I I TI I LIEO II E  MY
+us_009_snr0,wav2vec2-base-960h,us,snr0,1.0,People sitting on a street while drinking.,O I QUIT
+india_002_snr0,wav2vec2-base-960h,india,snr0,1.0,"A group of people, one of them with a guitar, were sitting by the campfire and singing songs.",IF YOU UT I TE REE A E E BA E YEBA TE  BAT E E DO

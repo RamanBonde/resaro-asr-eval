@@ -14,7 +14,7 @@ ACCENT_GROUPS = {
     "india":  ["India and South Asia"],
     "german": ["German"],
 }
-CLIPS_PER_GROUP = 60           # small n is fine per the briefing; state it as a limitation
+CLIPS_PER_GROUP = 10           # small n is fine per the briefing; state it as a limitation
 
 # --- Noise conditions ---------------------------------------------------
 # SNR in dB: higher = cleaner. 'clean' = original audio, no mixing.
